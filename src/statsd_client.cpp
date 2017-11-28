@@ -52,7 +52,7 @@ StatsdClient::StatsdClient(const string& host,
     srandom(time(NULL));
 
     if (batching_) {
-        pthread_mutex_init(&batching_lock_, PTHREAD_MUTEX_DEFAULT);
+        pthread_mutex_init(&batching_lock_, NULL);
         batching_thread_ = std::thread([this] {
           while (!exit_) {
               std::deque<std::string> staged_message_queue;
